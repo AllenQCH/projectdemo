@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cctv.mapper.UwsAttachmentMapper">
+  <resultMap id="BaseResultMap" type="com.cctv.pojo.UwsAttachment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="id_ums_manual_info" jdbcType="VARCHAR" property="idUmsManualInfo" />
+    <result column="business_key" jdbcType="VARCHAR" property="businessKey" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="document_group_id" jdbcType="VARCHAR" property="documentGroupId" />
+    <result column="document_id" jdbcType="VARCHAR" property="documentId" />
+    <result column="archive_date" jdbcType="TIMESTAMP" property="archiveDate" />
+    <result column="document_group_type" jdbcType="VARCHAR" property="documentGroupType" />
+    <result column="eletric_gen_time" jdbcType="VARCHAR" property="eletricGenTime" />
+    <result column="task_type" jdbcType="VARCHAR" property="taskType" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="operate_by" jdbcType="VARCHAR" property="operateBy" />
+    <result column="operate_name" jdbcType="VARCHAR" property="operateName" />
+    <result column="operate_date" jdbcType="TIMESTAMP" property="operateDate" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_date" jdbcType="TIMESTAMP" property="updatedDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_ums_manual_info, business_key, business_type, document_group_id, document_id, 
+    archive_date, document_group_type, eletric_gen_time, task_type, file_type, operate_by, 
+    operate_name, operate_date, created_by, created_date, updated_by, updated_date
+  </sql>
+  <select id="selectByExample" parameterType="com.cctv.pojo.UwsAttachmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uws_attachment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from uws_attachment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from uws_attachment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cctv.pojo.UwsAttachmentExample">
+    delete from uws_attachment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cctv.pojo.UwsAttachment">
+    insert into uws_attachment (id, id_ums_manual_info, business_key, 
+      business_type, document_group_id, document_id, 
+      archive_date, document_group_type, eletric_gen_time, 
+      task_type, file_type, operate_by, 
+      operate_name, operate_date, created_by, 
+      created_date, updated_by, updated_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{idUmsManualInfo,jdbcType=VARCHAR}, #{businessKey,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{documentGroupId,jdbcType=VARCHAR}, #{documentId,jdbcType=VARCHAR}, 
+      #{archiveDate,jdbcType=TIMESTAMP}, #{documentGroupType,jdbcType=VARCHAR}, #{eletricGenTime,jdbcType=VARCHAR}, 
+      #{taskType,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, #{operateBy,jdbcType=VARCHAR}, 
+      #{operateName,jdbcType=VARCHAR}, #{operateDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cctv.pojo.UwsAttachment">
+    insert into uws_attachment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idUmsManualInfo != null">
+        id_ums_manual_info,
+      </if>
+      <if test="businessKey != null">
+        business_key,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="documentGroupId != null">
+        document_group_id,
+      </if>
+      <if test="documentId != null">
+        document_id,
+      </if>
+      <if test="archiveDate != null">
+        archive_date,
+      </if>
+      <if test="documentGroupType != null">
+        document_group_type,
+      </if>
+      <if test="eletricGenTime != null">
+        eletric_gen_time,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="operateBy != null">
+        operate_by,
+      </if>
+      <if test="operateName != null">
+        operate_name,
+      </if>
+      <if test="operateDate != null">
+        operate_date,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedDate != null">
+        updated_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="idUmsManualInfo != null">
+        #{idUmsManualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentGroupId != null">
+        #{documentGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="documentId != null">
+        #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDate != null">
+        #{archiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="documentGroupType != null">
+        #{documentGroupType,jdbcType=VARCHAR},
+      </if>
+      <if test="eletricGenTime != null">
+        #{eletricGenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null">
+        #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="operateName != null">
+        #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null">
+        #{operateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null">
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cctv.pojo.UwsAttachmentExample" resultType="java.lang.Long">
+    select count(*) from uws_attachment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update uws_attachment
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.idUmsManualInfo != null">
+        id_ums_manual_info = #{record.idUmsManualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessKey != null">
+        business_key = #{record.businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentGroupId != null">
+        document_group_id = #{record.documentGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentId != null">
+        document_id = #{record.documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.archiveDate != null">
+        archive_date = #{record.archiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.documentGroupType != null">
+        document_group_type = #{record.documentGroupType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eletricGenTime != null">
+        eletric_gen_time = #{record.eletricGenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null">
+        task_type = #{record.taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileType != null">
+        file_type = #{record.fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateBy != null">
+        operate_by = #{record.operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateName != null">
+        operate_name = #{record.operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateDate != null">
+        operate_date = #{record.operateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdDate != null">
+        created_date = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedDate != null">
+        updated_date = #{record.updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update uws_attachment
+    set id = #{record.id,jdbcType=BIGINT},
+      id_ums_manual_info = #{record.idUmsManualInfo,jdbcType=VARCHAR},
+      business_key = #{record.businessKey,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      document_group_id = #{record.documentGroupId,jdbcType=VARCHAR},
+      document_id = #{record.documentId,jdbcType=VARCHAR},
+      archive_date = #{record.archiveDate,jdbcType=TIMESTAMP},
+      document_group_type = #{record.documentGroupType,jdbcType=VARCHAR},
+      eletric_gen_time = #{record.eletricGenTime,jdbcType=VARCHAR},
+      task_type = #{record.taskType,jdbcType=VARCHAR},
+      file_type = #{record.fileType,jdbcType=VARCHAR},
+      operate_by = #{record.operateBy,jdbcType=VARCHAR},
+      operate_name = #{record.operateName,jdbcType=VARCHAR},
+      operate_date = #{record.operateDate,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      created_date = #{record.createdDate,jdbcType=TIMESTAMP},
+      updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      updated_date = #{record.updatedDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cctv.pojo.UwsAttachment">
+    update uws_attachment
+    <set>
+      <if test="idUmsManualInfo != null">
+        id_ums_manual_info = #{idUmsManualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessKey != null">
+        business_key = #{businessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentGroupId != null">
+        document_group_id = #{documentGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="documentId != null">
+        document_id = #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDate != null">
+        archive_date = #{archiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="documentGroupType != null">
+        document_group_type = #{documentGroupType,jdbcType=VARCHAR},
+      </if>
+      <if test="eletricGenTime != null">
+        eletric_gen_time = #{eletricGenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null">
+        operate_by = #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="operateName != null">
+        operate_name = #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null">
+        operate_date = #{operateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null">
+        updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cctv.pojo.UwsAttachment">
+    update uws_attachment
+    set id_ums_manual_info = #{idUmsManualInfo,jdbcType=VARCHAR},
+      business_key = #{businessKey,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      document_group_id = #{documentGroupId,jdbcType=VARCHAR},
+      document_id = #{documentId,jdbcType=VARCHAR},
+      archive_date = #{archiveDate,jdbcType=TIMESTAMP},
+      document_group_type = #{documentGroupType,jdbcType=VARCHAR},
+      eletric_gen_time = #{eletricGenTime,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      operate_by = #{operateBy,jdbcType=VARCHAR},
+      operate_name = #{operateName,jdbcType=VARCHAR},
+      operate_date = #{operateDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_date = #{updatedDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

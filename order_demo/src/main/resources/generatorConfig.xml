@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+    <!--导入属性配置-->
+    <properties resource="application.yaml"></properties>
+    <!--指定特定数据库的jdbc驱动jar包的位置-->
+    <classPathEntry location="${location}" />
+
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
