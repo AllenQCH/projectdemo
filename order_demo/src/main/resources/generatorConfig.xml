@@ -54,7 +54,7 @@
         </javaClientGenerator>
         <!-- 指定数据库表,用几个写几个 -->
 
-        <table schema="" tableName="uws_attachment"></table>
+        <table schema="" tableName="demo_test"></table>
 
 
 

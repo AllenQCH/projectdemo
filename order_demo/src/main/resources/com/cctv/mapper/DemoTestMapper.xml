@@ -108,12 +108,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cctv.pojo.DemoTest">
-    insert into demo_test (id, test_type, order_id, 
+    insert into demo_test ( test_type, order_id,
       certificate_no, certificate_type, policy_no, 
       product_code, order_desc, created_by, 
       created_date, updated_by, updated_date
       )
-    values (#{id,jdbcType=BIGINT}, #{testType,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, 
+    values ( #{testType,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR},
       #{certificateNo,jdbcType=VARCHAR}, #{certificateType,jdbcType=CHAR}, #{policyNo,jdbcType=VARCHAR}, 
       #{productCode,jdbcType=VARCHAR}, #{orderDesc,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
       #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}

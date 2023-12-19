@@ -3,6 +3,6 @@ package com.cctv.dto;
 import lombok.Data;
 
 @Data
-public class InsertBatchDemoTest {
+public class InsertBatchDemoTestDTO {
     private int paramInt;
 }

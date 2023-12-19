@@ -3,8 +3,10 @@ package com.cctv.mapper;
 import com.cctv.pojo.DemoTest;
 import com.cctv.pojo.DemoTestExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface DemoTestMapper {
     long countByExample(DemoTestExample example);
 

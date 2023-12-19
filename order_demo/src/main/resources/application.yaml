@@ -6,3 +6,4 @@ spring:
     username: root
     password: root
     location: E:\\software\\repository\\mysql\\mysql-connector-java\\8.0.29\\mysql-connector-java-8.0.29.jar
+
