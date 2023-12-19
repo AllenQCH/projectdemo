@@ -16,6 +16,7 @@ public interface UwsAttachmentMapper {
     int deleteByPrimaryKey(Long id);
 
     int insert(UwsAttachment record);
+    int insertWithoutId(UwsAttachment record);
 
     int insertSelective(UwsAttachment record);
 

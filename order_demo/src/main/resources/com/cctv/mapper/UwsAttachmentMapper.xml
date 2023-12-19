@@ -130,6 +130,22 @@
       #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}
       )
   </insert>
+  <insert id="insertWithoutId" parameterType="com.cctv.pojo.UwsAttachment">
+    insert into uws_attachment (id_ums_manual_info, business_key,
+      business_type, document_group_id, document_id,
+      archive_date, document_group_type, eletric_gen_time,
+      task_type, file_type, operate_by,
+      operate_name, operate_date, created_by,
+      created_date, updated_by, updated_date
+      )
+    values (#{idUmsManualInfo,jdbcType=VARCHAR}, #{businessKey,jdbcType=VARCHAR},
+      #{businessType,jdbcType=VARCHAR}, #{documentGroupId,jdbcType=VARCHAR}, #{documentId,jdbcType=VARCHAR},
+      #{archiveDate,jdbcType=TIMESTAMP}, #{documentGroupType,jdbcType=VARCHAR}, #{eletricGenTime,jdbcType=VARCHAR},
+      #{taskType,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, #{operateBy,jdbcType=VARCHAR},
+      #{operateName,jdbcType=VARCHAR}, #{operateDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR},
+      #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
   <insert id="insertSelective" parameterType="com.cctv.pojo.UwsAttachment">
     insert into uws_attachment
     <trim prefix="(" suffix=")" suffixOverrides=",">

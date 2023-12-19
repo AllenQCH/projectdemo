@@ -13,5 +13,8 @@ public class UwsAttachmentService {
     public UwsAttachment selectByPrimaryKey(Long id) {
         return uwsAttachmentMapper.selectByPrimaryKey(id);
     }
+    public int insertWithoutId(UwsAttachment uwsAttachment){
+        return uwsAttachmentMapper.insertWithoutId(uwsAttachment);
+    }
 
 }

@@ -6,6 +6,7 @@ import com.cctv.service.UwsAttachmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -18,6 +19,12 @@ public class TestController {
     public String queryUws() {
         UwsAttachment uwsAttachment = uwsAttachmentService.selectByPrimaryKey((long) 1);
         return JSONUtil.toJsonStr(uwsAttachment);
+    }
+
+    @PostMapping(value = "/insertWithoutId")
+    public void  insertWithoutId(@RequestBody UwsAttachment uwsAttachment){
+        int i = uwsAttachmentService.insertWithoutId(uwsAttachment);
+        log.info("插入了{}条记录",i);
     }
 
 }
