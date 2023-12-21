@@ -10,11 +10,10 @@ import com.cctv.util.RandomIDGeneratorUtil;
 import com.cctv.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Slf4j
@@ -56,4 +55,29 @@ public class TestController {
         String s = RandomIDGeneratorUtil.generateIDCard();
         System.out.println(s);
     }
+
+    // 注意：这里@Autowired是报错的，因为@Autowired按照类名注入的
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+
+    /**
+     * @param str
+     * @return String
+     */
+    @PostMapping("/add")
+    public String add(String str) {
+        redisTemplate.opsForValue().set("str", "str");
+        String str1 = redisTemplate.opsForValue().get("str");
+        return str1;
+    }
+
+    /**
+     * @return user list
+     */
+    @PostMapping("/find")
+    public String edit(@RequestParam String str) {
+        return redisTemplate.opsForValue().get(str);
+    }
+
+
 }

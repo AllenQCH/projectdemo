@@ -1,9 +1,33 @@
-#集成mysql数据库的配置
 spring:
+  #集成mysql数据库的配置
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url:  jdbc:mysql://localhost:3306/qchbs?useUnicode=true&characterEncoding=utf-8&userSSL=false&serverTimezone = GMT
     username: root
     password: root
     location: E:\\software\\repository\\mysql\\mysql-connector-java\\8.0.29\\mysql-connector-java-8.0.29.jar
+#  #集成redis
+#  redis:
+#    host: 192.168.162.1
+#    port: 6379
+#    password: 123456
+#    database: 0
+#    lettuce:
+#      pool:
+#        max-idle: 16
+#        max-active: 32
+#        min-idle: 8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password: 123456
+    database: 0
+    #连接时间
+    timeout: 10000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 
