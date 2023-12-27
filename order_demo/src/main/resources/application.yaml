@@ -24,7 +24,7 @@ spring:
     database: 0
     #连接时间
     timeout: 10000
-    jedis:
+    lettuce:
       pool:
         max-active: 8
         max-wait: -1
