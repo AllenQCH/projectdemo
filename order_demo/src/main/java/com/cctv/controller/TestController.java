@@ -2,11 +2,12 @@ package com.cctv.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.cctv.dto.InsertBatchDemoTestDTO;
-import com.cctv.pojo.DemoTest;
 import com.cctv.pojo.UwsAttachment;
 import com.cctv.service.DemoTestService;
 import com.cctv.service.UwsAttachmentService;
 import com.cctv.util.RandomIDGeneratorUtil;
+//import com.cctv.util.RedisUtils;
+import com.cctv.util.RedisService;
 import com.cctv.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -24,6 +24,9 @@ public class TestController {
 
     @Autowired
     private DemoTestService demoTestService;
+
+    @Autowired
+    private RedisService redisService;
 
     @PostMapping(value = "/queryUws")
     public String queryUws() {
@@ -65,8 +68,8 @@ public class TestController {
      * @return String
      */
     @PostMapping("/add")
-    public String add(String str) {
-        redisTemplate.opsForValue().set("str", "str");
+    public String add(@RequestParam String str) {
+        redisTemplate.opsForValue().set("str", str);
         String str1 = redisTemplate.opsForValue().get("str");
         return str1;
     }
@@ -79,5 +82,15 @@ public class TestController {
         return redisTemplate.opsForValue().get(str);
     }
 
+    /**
+     * @return user list
+     */
+    @PostMapping("/testnewgetset")
+    @ResponseBody
+    public String test(@RequestParam String str) {
+        redisService.set(str,str);
+        Object value = redisService.get(str);
+        return String.valueOf(value);
+    }
 
 }
