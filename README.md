@@ -6,4 +6,5 @@ springboot项目从0开始
 第二个分支：将mybatisplus和mysql以及逆向工程加到项目中
 demo_20231220分支：将springboot与redis、lettuce集成，并写了一个redistemplate的简单示例，后面需要升级
 demo_20231222分支：集成redis、lettuce后，封装了redisutil方法
+demo_20231228分支：集成了swagger（knife3.03版本）knife是swagger的升级版本
 

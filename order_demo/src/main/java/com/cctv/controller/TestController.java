@@ -9,6 +9,8 @@ import com.cctv.util.RandomIDGeneratorUtil;
 //import com.cctv.util.RedisUtils;
 import com.cctv.util.RedisService;
 import com.cctv.util.SnowFlakeUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,6 +20,7 @@ import javax.annotation.Resource;
 
 @Slf4j
 @RestController
+@Api(tags = "测试swagger")
 public class TestController {
     @Autowired
     private UwsAttachmentService uwsAttachmentService;
@@ -85,6 +88,7 @@ public class TestController {
     /**
      * @return user list
      */
+    @ApiOperation("测试接口")
     @PostMapping("/testnewgetset")
     @ResponseBody
     public String test(@RequestParam String str) {
