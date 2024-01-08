@@ -7,4 +7,6 @@ springboot项目从0开始
 demo_20231220分支：将springboot与redis、lettuce集成，并写了一个redistemplate的简单示例，后面需要升级
 demo_20231222分支：集成redis、lettuce后，封装了redisutil方法
 demo_20231228分支：集成了swagger（knife3.03版本）knife是swagger的升级版本
+demo_20240108分支：实现了静态代理和动态代理：包括基于jdk（接口形式）和cglib（类）两种方式
+
 
