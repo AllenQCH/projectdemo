@@ -9,4 +9,5 @@ demo_20231222分支：集成redis、lettuce后，封装了redisutil方法
 demo_20231228分支：集成了swagger（knife3.03版本）knife是swagger的升级版本
 demo_20240108分支：实现了静态代理和动态代理：包括基于jdk（接口形式）和cglib（类）两种方式
 
+demo_20240117分支：测试几个线程的使用：参考：https://blog.csdn.net/ThinkWon/article/details/102541990
 
