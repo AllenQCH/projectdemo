@@ -41,4 +41,11 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+# 线程池的配置
+threadpool:
+  corePoolSize: 8
+  maxPoolSize: 16
+  queueCapacity: 5
+  keepAliveSeconds: 300
+
 

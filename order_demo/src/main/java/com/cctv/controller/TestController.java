@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.cctv.dto.InsertBatchDemoTestDTO;
 import com.cctv.pojo.UwsAttachment;
 import com.cctv.service.DemoTestService;
+import com.cctv.service.LoginService;
 import com.cctv.service.UwsAttachmentService;
 import com.cctv.util.RandomIDGeneratorUtil;
 //import com.cctv.util.RedisUtils;
@@ -97,4 +98,15 @@ public class TestController {
         return String.valueOf(value);
     }
 
+    @Autowired
+    private LoginService loginService;
+    /**
+     * @return 测试多线程登录接口
+     */
+    @ApiOperation("测试多线程登录接口")
+    @PostMapping("/testlogin")
+    @ResponseBody
+    public void login(){
+        loginService.login();
+    }
 }
