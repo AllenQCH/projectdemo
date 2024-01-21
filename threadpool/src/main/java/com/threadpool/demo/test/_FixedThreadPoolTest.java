@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 /**
  * FixedThreadPool 用于负载比较重的服务器，为了资源的合理利用，需要限制当前线程数量。
  */
-public class FixedThreadPoolTest {
+public class _FixedThreadPoolTest {
     /**
      * 因此这个线程池执行任务的流程如下：
      *

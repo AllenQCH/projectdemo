@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 /**
  * SingleThreadExecutor 用于串行执行任务的场景，每个任务必须按顺序执行，不需要并发执行。
  */
-public class SingleThreadExecutorTest {
+public class _SingleThreadExecutorTest {
     public static void main(String[] args) {
         /**
          *

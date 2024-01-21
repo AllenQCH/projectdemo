@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * ScheduledThreadPoolExecutor 用于需要多个后台线程执行周期任务，同时需要限制线程数量的场景。
  */
-public class ScheduledThreadPoolTest {
+public class _ScheduledThreadPoolTest {
     public static void main(String[] args) {
         /**
          * /**

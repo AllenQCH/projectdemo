@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 /**
  * CachedThreadPool 用于并发执行大量短期的小任务，或者是负载较轻的服务器。
  */
-public class CachedThreadPoolTest {
+public class _CachedThreadPoolTest {
     public static void main(String[] args) {
         /**
          * 可以看到，CachedThreadPool 没有核心线程，非核心线程数无上限，也就是全部使用外包，但是每个外包空闲的时间只有 60 秒，超过后就会被回收。
