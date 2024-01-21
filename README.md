@@ -10,4 +10,8 @@ demo_20231228分支：集成了swagger（knife3.03版本）knife是swagger的升
 demo_20240108分支：实现了静态代理和动态代理：包括基于jdk（接口形式）和cglib（类）两种方式
 
 demo_20240117分支：测试几个线程的使用：参考：https://blog.csdn.net/ThinkWon/article/details/102541990
-
+demo_20240121分支：1、写了通过threadpooltaskexecutors的封装的多线程
+                  2、写了通过springboot注解实现的多线程
+                  参考文章：https://blog.csdn.net/lingerlan510/article/details/122322588
+                  参考文章：https://cloud.tencent.com/developer/article/1984291
+                  创建order_demo中的多线程相关的类
