@@ -49,3 +49,14 @@ threadpool:
   keepAliveSeconds: 300
 
 
+## 服务链接配置
+rocketmq:
+  name-server: 192.168.219.137:9876
+  producer:
+    group: bootProducer
+    send-message-timeout: 30000
+  topic: TopicTest
+  group: bootConsumer
+
+
+
