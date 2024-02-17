@@ -15,3 +15,4 @@ demo_20240121分支：1、写了通过threadpooltaskexecutors的封装的多线�
                   参考文章：https://blog.csdn.net/lingerlan510/article/details/122322588
                   参考文章：https://cloud.tencent.com/developer/article/1984291
                   创建order_demo中的多线程相关的类
+demo_20240122分支：写了单例模式的demo         
