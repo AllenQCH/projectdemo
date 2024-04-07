@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- MVN Goals: mybatis-generator:generate -->
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+
+    <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    	<property name="javaFileEncoding" value="UTF-8"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
+        </plugin>
+        
+        <jdbcConnection driverClass="${datasource.driverClassName}"
+                        connectionURL="${datasource.url}"
+                        userId="${datasource.username}"
+                        password="${datasource.password}">
+        </jdbcConnection>
+
+
+        <!-- java模型创建器，是必须要的元素 负责：1，key类（见context的defaultModelType）；2，java类；3，查询类 -->
+		<javaModelGenerator targetPackage="${targetEntityPackage}" targetProject="src/main/java">
+			<!-- for MyBatis3/MyBatis3Simple 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter； -->
+			<property name="constructorBased" value="false" />
+
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			
+			<!-- 设置一个根对象， 如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项 
+				注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括： 1，属性名相同，类型相同，有相同的getter/setter方法； -->
+            <!--<property name="rootClass" value="com.paic.ncbs.omp.dao.entity.BaseEntity"/>-->
+
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<!-- <property name="trimStrings" value="true" /> -->
+		</javaModelGenerator>
+
+		<!-- 生成SQL map的XML文件生成器 -->
+		<sqlMapGenerator targetPackage="${targetSqlMapPackage}" targetProject="src/main/resources">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 生成Mapper接口-->
+		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="src/main/java" type="XMLMAPPER">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table tableName="plan_test"/>
+
+
+    </context>
+</generatorConfiguration>

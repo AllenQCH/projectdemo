@@ -5,6 +5,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>order_demo</module>
+        <module>transferData</module>
+        <module>test_threadpool</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
