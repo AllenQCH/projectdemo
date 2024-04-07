@@ -17,3 +17,7 @@ demo_20240121分支：1、写了通过threadpooltaskexecutors的封装的多线�
                   创建order_demo中的多线程相关的类
 demo_20240122分支：写了单例模式的demo         
 demo_20240217分支：引入rocketmq，并写了一个简单的demo
+demo_20240323分支：加入一个test_mybatis_plus的module,后期如果有一个单纯的逆向生成的工程可以参考这个
+demo_20240407分支：新加入一个test_threadpool的module,需要实现功能如下:
+                  1、先做一个批量插入的功能,要用三种方式：a、for循环逐个插入，b、sql insertbatch插入，c、多线程+sql insertbatch插入
+                  2、用countdownlatch多次查询其他表，如果为空，则做什么操作
