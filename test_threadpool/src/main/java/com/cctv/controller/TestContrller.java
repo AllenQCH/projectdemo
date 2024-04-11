@@ -24,44 +24,58 @@ public class TestContrller {
     }
 
     @Autowired
-    private PlanTestMapper planTestMapper;
-
-    @PostMapping(value = "/query111")
-    public String query111() {
-        PlanTest planTest = planTestMapper.selectOne(new LambdaQueryWrapper<PlanTest>().eq(PlanTest::getIdPlanTest, ""));
-
-        if (ObjectUtil.isNotEmpty(planTest)){
-            planTest.setIdPlanTest(1l);
-
-        }else {
-            planTest = new PlanTest();
-            planTest.setIdPlanTest(1l);
-        }
-        return JSONUtil.toJsonStr(planTest);
-    }
-
-    @Autowired
     private PlanTestService planTestService;
 
-    @PostMapping(value = "/forCycleInsert")
-    public String forCycleInsert() {
-        planTestService.forCycleInsert();
-        System.out.printf("666666666666");
-        return "666666666666";
+    /**
+     * for循环单个插入
+     * @return
+     */
+    @PostMapping(value = "/forCircleInsert")
+    public String forCircleInsert() {
+        String s = planTestService.forCircleInsert();
+        return s;
     }
 
-    @PostMapping(value = "/threadPoolExcutorInsert")
-    public String threadPoolExcutorInsert() {
-        planTestService.threadPoolExcutorInsert();
-        System.out.printf("666666666666");
-        return "666666666666";
+    /**
+     * 数据库批量出入
+     * @return
+     */
+    @PostMapping(value = "/insertBatch")
+    public String insertBatch() {
+        String s = planTestService.insertBatch();
+        return s ;
     }
 
-    @PostMapping(value = "/countDownLatchInsert")
-    public String countDownLatchInsert() {
-        planTestService.countDownLatchInsert();
-        System.out.printf("666666666666");
-        return "666666666666";
+    /**
+     * 异步线程池批量插入
+     * @return
+     */
+    @PostMapping(value = "/insertThreadPoolAsyc")
+    public String insertThreadPoolAsyc() {
+        planTestService.insertThreadPoolAsyc();
+        return null;
     }
+
+    /**
+     * 异步线程池批量插入1
+     * @return
+     */
+    @PostMapping(value = "/insertThreadPoolAsyc1")
+    public String insertThreadPoolAsyc1() {
+        planTestService.insertThreadPoolAsyc1();
+        return null;
+    }
+
+    /**
+     * 线程池批量插入
+     * @return
+     */
+    @PostMapping(value = "/insertThreadPool")
+    public String insertThreadPool() {
+        planTestService.insertThreadPool();
+        return null;
+    }
+
+
 
 }
