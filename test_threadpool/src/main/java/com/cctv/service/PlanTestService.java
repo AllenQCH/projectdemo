@@ -22,6 +22,9 @@ public class PlanTestService {
     @Autowired
     private PlanTestMapper planTestMapper;
 
+    @Autowired
+    private PlanTestServiceAsyc planTestServiceAsyc;
+
     public String forCircleInsert() {
         List<PlanTest> planTests = new ArrayList<>();
         PlanTest planTest = new PlanTest();
@@ -45,10 +48,10 @@ public class PlanTestService {
     public String insertBatch() {
         List<PlanTest> planTests = new ArrayList<>();
         PlanTest planTest;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100000; i++) {
             planTest = new PlanTest();
-            planTest.setPlanType("2222222222222");
-            planTest.setPlanCode("22222222222222");
+            planTest.setPlanType("222222222222");
+            planTest.setPlanCode("222222222222");
             planTests.add(planTest);
         }
         long startTime = System.currentTimeMillis();
@@ -66,8 +69,8 @@ public class PlanTestService {
         PlanTest planTest;
         for (int i = 0; i < 100000; i++) {
             planTest = new PlanTest();
-            planTest.setPlanType("3333333333333333");
-            planTest.setPlanCode("33333333333333333");
+            planTest.setPlanType("333333333333");
+            planTest.setPlanCode("33333333333333");
             planTests.add(planTest);
         }
         int total = planTests.size();
@@ -82,35 +85,11 @@ public class PlanTestService {
             } else {
                 batchList = planTests.subList(i * batchSize, (i + 1) * batchSize);
             }
-            insertThreadPoolCountDownLatch(countDownLatch, batchList);
+            planTestServiceAsyc.insertThreadPoolCountDownLatch(countDownLatch, batchList);
         }
         long endTime = System.currentTimeMillis() - startTime;
         // insertBatch打印时间：1174
         logger.info("insertBatch打印时间：{}", endTime);
-    }
-
-    @Async("asyncServiceExecutor")
-    public void insertThreadPoolCountDownLatch(CountDownLatch countDownLatch, List<PlanTest> planTestList) {
-        try {
-            logger.info("3333333333333333");
-            planTestMapper.insertBatch(planTestList);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            countDownLatch.countDown();
-        }
-    }
-
-    @Async("asyncServiceExecutor1")
-    public void insertThreadPoolCountDownLatch1(CountDownLatch countDownLatch, List<PlanTest> planTestList) {
-        try {
-            logger.info("444444444444444444444444444");
-            planTestMapper.insertBatch(planTestList);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            countDownLatch.countDown();
-        }
     }
 
     public void insertThreadPoolAsyc1() {
@@ -119,8 +98,8 @@ public class PlanTestService {
         PlanTest planTest;
         for (int i = 0; i < 100000; i++) {
             planTest = new PlanTest();
-            planTest.setPlanType("444444444444444444444444444");
-            planTest.setPlanCode("444444444444444444444444444");
+            planTest.setPlanType("555555555555");
+            planTest.setPlanCode("555555555555");
             planTests.add(planTest);
         }
         int total = planTests.size();
@@ -135,12 +114,13 @@ public class PlanTestService {
             } else {
                 batchList = planTests.subList(i * batchSize, (i + 1) * batchSize);
             }
-            insertThreadPoolCountDownLatch1(countDownLatch, batchList);
+            planTestServiceAsyc.insertThreadPoolCountDownLatch1(countDownLatch, batchList);
         }
         long endTime = System.currentTimeMillis() - startTime;
         // insertBatch打印时间：1174
         logger.info("insertBatch打印时间：{}", endTime);
     }
+
 
     public void insertThreadPool() {
         // 异步多线程  插入数据库
@@ -148,8 +128,8 @@ public class PlanTestService {
         PlanTest planTest;
         for (int i = 0; i < 10000; i++) {
             planTest = new PlanTest();
-            planTest.setPlanType("55555555555555555");
-            planTest.setPlanCode("555555555555555555");
+            planTest.setPlanType("4444444444444444444");
+            planTest.setPlanCode("44444444444444444444");
             planTests.add(planTest);
         }
         int total = planTests.size();
@@ -193,7 +173,75 @@ public class PlanTestService {
         long endTime = System.currentTimeMillis() - startTime;
         // insertBatch打印时间：9306
         logger.info("insertBatch打印时间：{}", endTime);
+    }
 
+    public void insertThreadPoolAsycBatch() {
+        int total = 2000024;
+        int batchSize = 50;
+        // 循环的次数 41次
+        int number = total % batchSize == 0 ? total / batchSize : total / batchSize + 1;
+        CountDownLatch countDownLatch = new CountDownLatch(number);
+        long startTime = System.currentTimeMillis();
+        List<Integer> listInt = new ArrayList<>(number);
+        // 数组的值对应查询的页数
+        for (int i = 0; i < number; i++) {
+            listInt.add(i * batchSize + 1);
+        }
+        // list一共41组数据，前40组为50；最后一组24个
+        for (int i = 0; i < number; i++) {
+            if (i == number - 1) {
+                planTestServiceAsyc.insertThreadPoolCountDownLatchBatch(listInt.get(i), listInt.get(i) + (total % batchSize) - 1);
+            } else {
+                planTestServiceAsyc.insertThreadPoolCountDownLatchBatch(listInt.get(i), listInt.get(i) + batchSize -1 );
+            }
+        }
+        long endTime = System.currentTimeMillis() - startTime;
+        // insertBatch打印时间：1174
+        logger.info("insertBatch打印时间：{}", endTime);
+
+    }
+
+    public void insertThreadPoolAsycBatch1() {
+        int total = 2000024;
+        int batchSize = 50;
+        // 循环的次数 41次
+        int number = total % batchSize == 0 ? total / batchSize : total / batchSize + 1;
+        long startTime = System.currentTimeMillis();
+        List<Integer> listInt = new ArrayList<>(number);
+        // 数组的值对应查询的页数
+        for (int i = 0; i < number; i++) {
+            listInt.add(i * batchSize + 1);
+        }
+        // list一共41组数据，前40组为50；最后一组24个
+        for (int i = 0; i < number; i++) {
+            if (i == number - 1) {
+                insertThreadPoolCountDownLatchBatch1(listInt.get(i), listInt.get(i) + (total % batchSize) - 1);
+            } else {
+                insertThreadPoolCountDownLatchBatch1(listInt.get(i), listInt.get(i) + batchSize -1 );
+            }
+        }
+        long endTime = System.currentTimeMillis() - startTime;
+        // insertBatch打印时间：1174
+        logger.info("insertBatch1打印时间：{}", endTime);
+
+    }
+
+    public void insertThreadPoolCountDownLatchBatch1(int start, int end) {
+        try {
+            List<PlanTest> planTests = new ArrayList<>();
+            for (int i = start; i <=end; i++) {
+                PlanTest planTest = new PlanTest();
+                planTest.setPlanCode(String.valueOf(i));
+                planTest.setPlanType(String.valueOf(i));
+                planTests.add(planTest);
+            }
+            logger.info("{}******************************{}",start,end);
+            planTestMapper.insertBatch(planTests);
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

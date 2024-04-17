@@ -77,5 +77,25 @@ public class TestContrller {
     }
 
 
+    /**
+     * 线程池批量插入类似黑名单同步的方案
+     * @return
+     */
+    @PostMapping(value = "/insertThreadPoolAsycBatch")
+    public String insertThreadPoolAsycBatch() {
+        planTestService.insertThreadPoolAsycBatch();
+        return null;
+    }
+
+    /**
+     * 线程池批量插入类似黑名单同步的方案
+     * @return
+     */
+    @PostMapping(value = "/insertThreadPoolAsycBatch1")
+    public String insertThreadPoolAsycBatch1() {
+        planTestService.insertThreadPoolAsycBatch1();
+        return null;
+    }
+
 
 }
